@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+      "target": "https://morpheusdev.service-now.com/",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }

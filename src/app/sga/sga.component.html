@@ -1,0 +1,1046 @@
+<style>
+    .table-bordered th, .table-bordered td {
+      border: 1px solid darkgray !important;
+    }
+    .az-content-label{
+      font-size: 13px !important;
+    }
+    .blur{
+      filter: blur(5px);
+    }
+    .w3-bar{
+      border-bottom: 1px solid #cdd4e0;
+      margin-bottom: 20px;
+      background-color: #ccc;
+    }
+    .w3-bar-item:hover{
+      background-color: rgb(127,127,127) !important;
+    }
+    .w3-bar-item{
+      border-right: 1px solid;
+    }
+    .w3-grey{
+      background-color: #7987a1 !important;
+      color: white !important;
+    }
+    .table th, .table td {
+      padding: 0px 15px !important;
+    }
+    .table{
+      text-align: center !important;
+    }
+  </style>
+  
+  <div class="az-content az-content-dashboard">
+    <div class="container {{blur}}">
+      <div class="az-content-body">
+        <div class="az-dashboard-one-title">
+          <div>
+            <!-- <h2 class="az-dashboard-title">Hi Parul, welcome back!</h2> -->
+            <!-- <p class="az-dashboard-text">Finance Dashboard</p> -->
+          </div>
+          <div class="az-content-header-right">
+          </div>
+        </div>
+        <div class="az-dashboard-nav">
+          <nav class="nav">
+            <div class="media">
+              <div class="media-body">
+                <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;">
+                  <option value="">2022</option>
+                  <!-- <option value="">2021</option> -->
+                </select>
+              </div>
+            </div>
+            <!-- <div class="media">
+              <div class="media-body">
+                <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;">
+                  <option value="">BC</option>
+                  <option value="">1 BC</option>
+                  <option value="">2 BC</option>
+                  <option value="">3 BC</option>
+                  <option value="">4 BC</option>
+                  <option value="">5 BC</option>
+                  <option value="">6 BC</option>
+                  <option value="">7 BC</option>
+                  <option value="">8 BC</option>
+                  <option value="">9 BC</option>
+                  <option value="">10 BC</option>
+                  <option value="">11 BC</option>
+                  <option value="">12 BC</option>
+                </select>
+              </div>
+            </div> -->
+            <div class="media">
+              <div class="media-body">
+                  <select class="btn btn-secondary dropdown-toggle" style="margin-left: 10px;margin-bottom: 10px;margin-right: 10px;" (change)="globalFilter()" #timeframe>
+                    <!-- <option value="">Timeframe</option> -->
+                    <option value="H">Annual</option>
+                    <option value="Q1">Q1</option>
+                    <option value="Q2">Q2</option>
+                    <option value="Q3">Q3</option>
+                    <option value="Q4">Q4</option>
+                    <option value="1H">1H</option>
+                    <option value="2H">2H</option>
+                    <!-- <option value="ytd">YTD</option> -->
+                    <!-- <option value="last_month">Last Month</option> -->
+                    <!-- <option value="custom">Custom</option> -->
+                  </select>
+                  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':customDateFilter}">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Custom Date Range</h4>
+                        </div>
+                        <div class="modal-body">
+                          <input matInput [matDatepicker]="picker">
+                          <mat-hint>MM/DD/YYYY</mat-hint>
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" 
+                                  (click)="closeCustomDateFiler()">
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </nav>
+  
+  
+          <nav class="nav">
+            <a class="nav-link" routerLink="/dashboard" style="display: block !important;"><i class="far fa-dashboard"></i>Finance Dashboard</a>
+            <!-- <a class="nav-link" routerLink="/"><i class="far fa-save"></i> Save Report</a>
+            <a class="nav-link" routerLink="/"><i class="far fa-file-pdf"></i> Export to PDF</a>
+            <a class="nav-link" routerLink="/"><i class="far fa-envelope"></i>Send to Email</a>
+            <a class="nav-link" routerLink="/"><i class="fas fa-elli psis-h"></i></a> -->
+          </nav>
+        </div>
+        <div class="w3-bar">
+            <button class="w3-bar-item w3-button tablink w3-grey" (click)="showTab($event, 'summary', 'Summary')">Summary</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'admin', 'Admin')">Admin</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'branch', 'Branch')">Branch</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'StrategyAndPlanning', 'Strategy and Planning')">Strategy and Planning</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Corporate', 'Corporate')">Corporate</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Finance', 'Finance')">Finance</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'HR', 'HR')">HR</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'IT', 'IT')">IT</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SecretarialAndLegal', 'Secretarial & Legal')">Secretarial & Legal</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Management', 'Management')">Management</button>
+        </div>
+        <div class="w3-bar">
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Marketing', 'Marketing')">Marketing</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Quality', 'Quality')">Quality</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SupplyChain', 'Supply Chain')">Supply Chain</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SIG', 'SIG')">SIG</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'NBI', 'NBI')">NBI</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'CTO', 'CTO')">CTO</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'COO', 'COO')">COO</button>
+        </div>
+        <div id="summary" class="tabs">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                    <div class="card card-dashboard-five">
+                    <div class="card-header row">
+                        <div class="col-lg-6">
+                        <h6 class="card-title">Corporate SGA Overview<span *ngIf="currentBC"></span></h6>
+                        <!-- <h6 class="card-title">Corporate SGA Overview<span *ngIf="currentBC">({{currentBC}}BC)</span></h6> -->
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        </div>
+                        <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                            <div class="media-body">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-12">
+                        <table class="table table-bordered mg-b-0">
+                            <thead>
+                            <tr style="background-color: aliceblue;white-space: nowrap;">
+                              <th *ngFor="let header of table_headers_sga_sumary" style="font-size: inherit;">{{header}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let row of summary_table_data">
+                                <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                                  <span  *ngIf="val == 'Vs Tar' || val == 'Vs Bud' || val == 'Vs FY\'21'" style="font-size: small;display: block;text-align: right;width: 100%;display: inline-block;">
+                                    {{row[val]}}%
+                                    <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                  </span>
+                                  <span  *ngIf="val != 'Vs Tar' && val != 'Vs Bud' && val != 'Vs FY\'21' && val != 'Category'">
+                                    {{row[val] | number}}
+                                  </span>
+                                  <span  *ngIf="val == 'Category'">
+                                    <span *ngIf="row[val] == 'Corporate Total'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                    <span *ngIf="row[val] != 'Corporate Total'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                  </span>
+                               </td>
+                              </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="admin" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of admin_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="branch" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of branch_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="StrategyAndPlanning" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of StrategyAndPlanning_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="Corporate" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of Corporate_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="Finance" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of Finance_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="HR" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of HR_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="IT" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of IT_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="SecretarialAndLegal" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of SecretarialAndLegal_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="Management" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of Management_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="Marketing" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of Marketing_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="Quality" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of Quality_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="SupplyChain" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of SupplyChain_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="SIG" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of SIG_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="NBI" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of NBI_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="CTO" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of CTO_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="COO" class="tabs" style="display:none">
+            <div class="row row-sm mg-b-20">
+                <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five" style="overflow-x: scroll;">
+                    <div class="card-header row">
+                    <div class="col-lg-6">
+                        <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="media" style="float: right;">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                        <thead>
+                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                            <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of COO_table_data">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                {{row[val]}}%
+                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':sgaTrendModal}">
+      <div class="modal-dialog" role="document" style="max-width: 1000px;max-height: 1000px;overflow-y: initial !important;">
+        <div class="modal-content" style="margin-top: -20px;">
+          <div class="modal-header">
+            <h4 class="modal-title">SGA Summary({{buFilter}}/{{timeFilter}})</h4>
+            <button _ngcontent-syb-c106="" type="button" aria-label="Close" class="close" (click)="closeSgaTrendModal()">
+              <span _ngcontent-syb-c106="" aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body" style="height: 80vh;overflow-y: auto;">
+            <div class="row row-sm mg-b-20">
+              <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                <div class="card card-dashboard-five">
+                  <div class="card-header row">
+                    <div class="col-lg-6">
+                      <h6 class="card-title">{{sgaCategoryTitle}}</h6>
+                      <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="media" style="float: right;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <table id="datatable" class="table table-bordered mg-b-0">
+                      <thead>
+                        <tr>
+                          <th>Category</th>
+                          <th>FY21 Budget (Annual)</th>
+                          <th>FY21 Target (Annual)</th>
+                          <th>9BC Est (Annual)</th>
+                          <th>YTD (Act)</th>
+                          <th>YTD% (Spend vs Target)</th>
+                          <th>Bal To Go vs Target</th>
+                          <th>Bal To Go % vs Target</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Payroll</td>
+                          <td>50</td>
+                          <td>42</td>
+                          <td>50</td>
+                          <td>21</td>
+                          <td>49%</td>
+                          <td>22</td>
+                          <td>51%</td>
+                        </tr>
+                        <tr>
+                          <td>Bonus</td>
+                          <td>50</td>
+                          <td>42</td>
+                          <td>50</td>
+                          <td>21</td>
+                          <td>49%</td>
+                          <td>22</td>
+                          <td>51%</td>
+                        </tr>
+                        <tr>
+                          <td>Welfare</td>
+                          <td>50</td>
+                          <td>42</td>
+                          <td>50</td>
+                          <td>21</td>
+                          <td>49%</td>
+                          <td>22</td>
+                          <td>51%</td>
+                        </tr>
+                        <tr>
+                          <td>Apartment Rental</td>
+                          <td>50</td>
+                          <td>42</td>
+                          <td>50</td>
+                          <td>21</td>
+                          <td>49%</td>
+                          <td>22</td>
+                          <td>51%</td>
+                        </tr>
+                        <tr>
+                          <td>Sales Promotion</td>
+                          <td>50</td>
+                          <td>42</td>
+                          <td>50</td>
+                          <td>21</td>
+                          <td>49%</td>
+                          <td>22</td>
+                          <td>51%</td>
+                        </tr>
+                        <tr>
+                          <td>Travel</td>
+                          <td>50</td>
+                          <td>42</td>
+                          <td>50</td>
+                          <td>21</td>
+                          <td>49%</td>
+                          <td>22</td>
+                          <td>51%</td>
+                        </tr>
+                        <tr>
+                          <td>Transportation</td>
+                          <td>50</td>
+                          <td>42</td>
+                          <td>50</td>
+                          <td>21</td>
+                          <td>49%</td>
+                          <td>22</td>
+                          <td>51%</td>
+                        </tr>
+                        <tr>
+                          <td>Entertainment</td>
+                          <td>50</td>
+                          <td>42</td>
+                          <td>50</td>
+                          <td>21</td>
+                          <td>49%</td>
+                          <td>22</td>
+                          <td>51%</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

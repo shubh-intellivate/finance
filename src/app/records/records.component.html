@@ -1,0 +1,27 @@
+<div class="az-content">
+    <div class="container">
+      <app-components-sidebar></app-components-sidebar>
+      <div class="az-content-body pd-lg-l-40 d-flex flex-column">
+  
+        <div class="az-content-label mg-b-5">{{tableTitle}}</div>
+  
+        <div class="table-responsive">
+          <table id="datatable" class="table table-striped mg-b-0">
+            <thead>
+              <tr>
+                <th *ngFor="let header of table_headers">{{header}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of table_data">
+                <td *ngFor="let val of Object.keys(row)">
+                  {{row[val]}}
+               </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+      </div>
+    </div>
+  </div>
