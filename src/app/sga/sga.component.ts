@@ -90,6 +90,14 @@ export class SgaComponent implements OnInit {
   ngAfterViewInit(){
   }
 
+  checkActual(val){
+    return val.endsWith('-A');
+  }
+
+  checkEstimate(val){
+    return val.endsWith('-E');
+  }
+
   showTab(evt, cityName, title) {
     this.sgaCategoryTitle = title;
     const tabs = Array.from(

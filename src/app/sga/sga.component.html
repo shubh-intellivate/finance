@@ -220,7 +220,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -265,7 +271,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -310,7 +322,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -355,7 +373,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -400,7 +424,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -445,7 +475,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -490,7 +526,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -535,7 +577,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -580,7 +628,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -625,7 +679,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -670,7 +730,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -715,7 +781,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -760,7 +832,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -805,7 +883,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -850,7 +934,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
@@ -895,7 +985,13 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
