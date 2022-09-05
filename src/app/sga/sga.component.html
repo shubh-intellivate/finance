@@ -174,12 +174,12 @@
                                     <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                                   </span>
-                                  <span  *ngIf="val != 'Vs Tar' && val != 'Vs Bud' && val != 'Vs FY\'21' && val != 'Category'">
+                                  <span  *ngIf="val != 'Vs Tar' && val != 'Vs Bud' && val != 'Vs FY\'21' && val != 'Category'" style="width: 100%;display: inline-block;text-align: right;">
                                     {{row[val] | number}}
                                   </span>
                                   <span  *ngIf="val == 'Category'">
-                                    <span *ngIf="row[val] == 'Corporate Total'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                    <span *ngIf="row[val] != 'Corporate Total'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                    <span *ngIf="row[val] == 'Corporate Total'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;text-align: left;">{{row[val]}}</span>
+                                    <span *ngIf="row[val] != 'Corporate Total'" style="background-color: antiquewhite;width: 100%;display: inline-block;text-align: left;">{{row[val]}}</span>
                                   </span>
                                </td>
                               </tr>
@@ -198,7 +198,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -208,7 +208,8 @@
                     <div class="card-body">
                     <table id="datatable" class="table table-bordered mg-b-0">
                         <thead>
-                          <tr style="background-color: aliceblue;white-space: nowrap;">
+                          <!-- <tr style="background-color: aliceblue;white-space: nowrap;"> -->
+                          <tr style="background-color: aliceblue;">
                             <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
                           </tr>
                         </thead>
@@ -220,18 +221,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -249,7 +244,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -271,18 +266,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -300,7 +289,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -322,18 +311,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -351,7 +334,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -373,18 +356,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -402,7 +379,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -424,18 +401,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -453,7 +424,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -475,18 +446,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -504,7 +469,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -526,18 +491,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -555,7 +514,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -577,18 +536,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -606,7 +559,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -628,18 +581,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -657,7 +604,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -679,18 +626,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -708,7 +649,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -730,18 +671,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -759,7 +694,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -781,18 +716,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -810,7 +739,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -832,18 +761,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -861,7 +784,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -883,18 +806,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -912,7 +829,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -934,18 +851,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -963,7 +874,7 @@
                     <div class="card-header row">
                     <div class="col-lg-6">
                         <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                        <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                         <div class="media" style="float: right;">
@@ -985,18 +896,12 @@
                                 <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
                                     <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                               </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkActual(val)" style="background-color:greenyellow;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && checkEstimate(val)" style="background-color: gold;width: 100%;display: inline-block;">
-                                {{row[val] | number}}
-                              </span>
-                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category' && !checkEstimate(val) && !checkActual(val)">
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
                               </span>
                               <span  *ngIf="val == 'Category'">
-                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
-                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -1025,7 +930,7 @@
                   <div class="card-header row">
                     <div class="col-lg-6">
                       <h6 class="card-title">{{sgaCategoryTitle}}</h6>
-                      <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in INR</p>
+                      <p class="card-text">{{buFilter}}/{{timeFilter}}<br>Values in K-INR</p>
                     </div>
                     <div class="col-lg-6">
                       <div class="media" style="float: right;">
