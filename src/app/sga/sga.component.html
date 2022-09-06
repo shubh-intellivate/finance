@@ -171,8 +171,9 @@
                                 <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                                   <span  *ngIf="val == 'Vs Tar' || val == 'Vs Bud' || val == 'Vs FY\'21'" style="font-size: small;display: block;text-align: right;width: 100%;display: inline-block;">
                                     {{row[val]}}%
-                                    <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                    <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
                                   </span>
                                   <span  *ngIf="val != 'Vs Tar' && val != 'Vs Bud' && val != 'Vs FY\'21' && val != 'Category'" style="width: 100%;display: inline-block;text-align: right;">
                                     {{row[val] | number}}
@@ -180,6 +181,23 @@
                                   <span  *ngIf="val == 'Category'">
                                     <span *ngIf="row[val] == 'Corporate Total'" style="font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;text-align: left;">{{row[val]}}</span>
                                     <span *ngIf="row[val] != 'Corporate Total'" style="background-color: antiquewhite;width: 100%;display: inline-block;text-align: left;">{{row[val]}}</span>
+                                  </span>
+                               </td>
+                              </tr>
+                              <tr *ngFor="let row of summary_corporate_total" style="background-color: aliceblue;">
+                                <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                                  <span  *ngIf="val == 'Vs Tar' || val == 'Vs Bud' || val == 'Vs FY\'21'" style="font-size: small;display: block;text-align: right;width: 100%;display: inline-block;">
+                                    {{row[val]}}%
+                                    <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                  </span>
+                                  <span  *ngIf="val != 'Vs Tar' && val != 'Vs Bud' && val != 'Vs FY\'21' && val != 'Category'" style="width: 100%;display: inline-block;text-align: right;">
+                                    {{row[val] | number}}
+                                  </span>
+                                  <span  *ngIf="val == 'Category'">
+                                    <span *ngIf="row[val] == 'Corporate Total'" style="font-weight: bold;width: 100%;display: inline-block;text-align: left;">{{row[val]}}</span>
+                                    <span *ngIf="row[val] != 'Corporate Total'" style="width: 100%;display: inline-block;text-align: left;">{{row[val]}}</span>
                                   </span>
                                </td>
                               </tr>
@@ -208,7 +226,6 @@
                     <div class="card-body">
                     <table id="datatable" class="table table-bordered mg-b-0">
                         <thead>
-                          <!-- <tr style="background-color: aliceblue;white-space: nowrap;"> -->
                           <tr style="background-color: aliceblue;">
                             <th *ngFor="let header of table_headers" style="font-size: inherit;">{{header}}</th>
                           </tr>
@@ -217,9 +234,16 @@
                           <tr *ngFor="let row of admin_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -227,6 +251,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of admin_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -262,9 +309,16 @@
                           <tr *ngFor="let row of branch_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -272,6 +326,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of branch_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -307,9 +384,16 @@
                           <tr *ngFor="let row of StrategyAndPlanning_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -317,6 +401,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of StrategyAndPlanning_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -352,9 +459,16 @@
                           <tr *ngFor="let row of Corporate_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -362,6 +476,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of Corporate_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -397,9 +534,16 @@
                           <tr *ngFor="let row of Finance_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -407,6 +551,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of Finance_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -442,9 +609,16 @@
                           <tr *ngFor="let row of HR_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -452,6 +626,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of HR_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -487,9 +684,16 @@
                           <tr *ngFor="let row of IT_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -497,6 +701,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of IT_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -532,9 +759,16 @@
                           <tr *ngFor="let row of SecretarialAndLegal_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -542,6 +776,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of SecretarialAndLegal_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -577,9 +834,16 @@
                           <tr *ngFor="let row of Management_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -587,6 +851,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of Management_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -622,9 +909,16 @@
                           <tr *ngFor="let row of Marketing_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -632,6 +926,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of Marketing_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -667,9 +984,16 @@
                           <tr *ngFor="let row of Quality_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -677,6 +1001,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of Quality_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -712,9 +1059,16 @@
                           <tr *ngFor="let row of SupplyChain_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -722,6 +1076,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of SupplyChain_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -757,9 +1134,16 @@
                           <tr *ngFor="let row of SIG_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -767,6 +1151,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of SIG_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -802,9 +1209,16 @@
                           <tr *ngFor="let row of NBI_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -812,6 +1226,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of NBI_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -847,9 +1284,16 @@
                           <tr *ngFor="let row of CTO_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -857,6 +1301,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of CTO_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>
@@ -892,9 +1359,16 @@
                           <tr *ngFor="let row of COO_table_data">
                             <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
                               <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
-                                {{row[val]}}%
-                                <i   *ngIf="row[val] < 100" style="color: green;" class="fas fa-circle"></i>
-                                    <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
                               </span>
                               <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
                                 {{row[val] | number}}
@@ -902,6 +1376,29 @@
                               <span  *ngIf="val == 'Category'">
                                 <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
                                 <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;background-color: antiquewhite;width: 100%;display: inline-block;">{{row[val]}}</span>
+                              </span>
+                           </td>
+                          </tr>
+                          <tr *ngFor="let row of COO_total_own_sga"  style="background-color: aliceblue;">
+                            <td *ngFor="let val of Object.keys(row)" style="white-space: nowrap;padding: 0px 0px !important;">
+                              <span  *ngIf="val == '% Vs FY22 TAR' || val == '% Vs FY22 BUD'" style="display: block;text-align: right;background-color: lightgray;width: 100%;display: inline-block;">
+                                <span *ngIf="row[val] == '-'" title="Actual with no Budget/Target">
+                                  0%
+                                  <i style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                                <span *ngIf="row[val] != '-'">
+                                  {{row[val]}}%
+                                  <i   *ngIf="row[val] <= 80" style="color: green;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] > 80 && row[val] < 100" style="color: #FFBF00;" class="fas fa-circle"></i>
+                                  <i   *ngIf="row[val] >= 100" style="color: red;" class="fas fa-circle"></i>
+                                </span>
+                              </span>
+                              <span  *ngIf="val != '% Vs FY22 TAR' && val != '% Vs FY22 BUD' && val != 'Category'" style="text-align: right;width: 100%;display: inline-block;">
+                                {{row[val] | number}}
+                              </span>
+                              <span  *ngIf="val == 'Category'">
+                                <span *ngIf="row[val] == 'Total Own SGA' || row[val] == 'Total SGA ex.ISSC/DWP' || row[val] == 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;font-weight: bold;width: 100%;display: inline-block;">{{row[val]}}</span>
+                                <span *ngIf="row[val] != 'Total Own SGA' && row[val] != 'Total SGA ex.ISSC/DWP' && row[val] != 'Total SGA inc.ISSC/DWP'" style="padding-left: 5px;text-align:left;width: 100%;display: inline-block;">{{row[val]}}</span>
                               </span>
                            </td>
                           </tr>

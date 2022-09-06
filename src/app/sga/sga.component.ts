@@ -61,6 +61,23 @@ export class SgaComponent implements OnInit {
   COO_table_data= [];
   table_headers_sga_sumary = [];
   summary_table_data = [];
+  admin_total_own_sga: any[];
+  branch_total_own_sga: any[];
+  StrategyAndPlanning_total_own_sga: any[];
+  Corporate_total_own_sga: any[];
+  Finance_total_own_sga: any[];
+  HR_total_own_sga: any[];
+  IT_total_own_sga: any[];
+  SecretarialAndLegal_total_own_sga: any[];
+  Management_total_own_sga: any[];
+  Marketing_total_own_sga: any[];
+  Quality_total_own_sga: any[];
+  SupplyChain_total_own_sga: any[];
+  SIG_total_own_sga: any[];
+  NBI_total_own_sga: any[];
+  CTO_total_own_sga: any[];
+  COO_total_own_sga: any[];
+  summary_corporate_total: any[];
 
   constructor(
     private dataService : DataService
@@ -188,9 +205,11 @@ export class SgaComponent implements OnInit {
     }
     this.table_headers_sga_sumary = [];
     this.summary_table_data = [];
+    this.summary_corporate_total = [];
     this.dataService.getSgaSummaryData(data).subscribe(
       res => {  
         var sga = res.result.Function;
+        var corp_total = res.result.corporate_total;
         for(var key in sga){
           for(var table_head in sga[key]){
             this.table_headers_sga_sumary.push(table_head);
@@ -199,6 +218,9 @@ export class SgaComponent implements OnInit {
         }
         for(var row in sga){
           this.summary_table_data.push(sga[row])
+        }
+        for(var row1 in corp_total){
+          this.summary_corporate_total.push(corp_total[row1])
         }
       });
   }
@@ -210,11 +232,11 @@ export class SgaComponent implements OnInit {
     }
     this.table_headers = [];
     this.admin_table_data = [];
+    this.admin_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var key in sga){
           for(var table_head in sga[key]){
             this.table_headers.push(table_head);
@@ -224,11 +246,8 @@ export class SgaComponent implements OnInit {
         for(var row in sga){
           this.admin_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.admin_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.admin_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.admin_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -239,19 +258,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.branch_table_data = [];
+    this.branch_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.branch_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.branch_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.branch_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.branch_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -262,19 +278,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.StrategyAndPlanning_table_data = [];
+    this.StrategyAndPlanning_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.StrategyAndPlanning_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.StrategyAndPlanning_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.StrategyAndPlanning_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.StrategyAndPlanning_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -285,19 +298,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.Corporate_table_data = [];
+    this.Corporate_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.Corporate_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.Corporate_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.Corporate_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.Corporate_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -308,19 +318,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.Finance_table_data = [];
+    this.Finance_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.Finance_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.Finance_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.Finance_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.Finance_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -331,19 +338,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.HR_table_data = [];
+    this.HR_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.HR_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.HR_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.HR_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.HR_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -354,19 +358,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.IT_table_data = [];
+    this.IT_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.IT_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.IT_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.IT_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.IT_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -377,19 +378,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.SecretarialAndLegal_table_data = [];
+    this.SecretarialAndLegal_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.SecretarialAndLegal_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.SecretarialAndLegal_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.SecretarialAndLegal_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.SecretarialAndLegal_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -400,19 +398,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.Management_table_data = [];
+    this.Management_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.Management_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.Management_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.Management_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.Management_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -423,19 +418,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.Marketing_table_data = [];
+    this.Marketing_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.Marketing_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.Marketing_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.Marketing_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.Marketing_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -446,19 +438,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.Quality_table_data = [];
+    this.Quality_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.Quality_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.Quality_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.Quality_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.Quality_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -469,19 +458,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.SupplyChain_table_data = [];
+    this.SupplyChain_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.SupplyChain_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.SupplyChain_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.SupplyChain_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.SupplyChain_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -492,19 +478,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.SIG_table_data = [];
+    this.SIG_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.SIG_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.SIG_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.SIG_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.SIG_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -515,19 +498,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.NBI_table_data = [];
+    this.NBI_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.NBI_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.NBI_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.NBI_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.NBI_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -538,19 +518,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.CTO_table_data = [];
+    this.CTO_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.CTO_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.CTO_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.CTO_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.CTO_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
@@ -561,19 +538,16 @@ export class SgaComponent implements OnInit {
       "month": timeframe
     }
     this.COO_table_data = [];
+    this.COO_total_own_sga = [];
     this.dataService.getSgaCategoryData(data).subscribe(
       res => {  
         var sga = res.result.data.sga;
-        var sga_split1 = res.result.data.sga_split1;
-        var sga_split2 = res.result.data.sga_split2;
+        var total_own_sga = res.result.data.total_own_sga;
         for(var row in sga){
           this.COO_table_data.push(sga[row])
         }
-        for(var row1 in sga_split1){
-          this.COO_table_data.push(sga_split1[row1])
-        }
-        for(var row2 in sga_split2){
-          this.COO_table_data.push(sga_split2[row2])
+        for(var row1 in total_own_sga){
+          this.COO_total_own_sga.push(total_own_sga[row1])
         }
       });
   }
