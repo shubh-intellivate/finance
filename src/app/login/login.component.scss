@@ -1,0 +1,23 @@
+.card{
+    margin-top: 18%;
+    border: 1px solid blue;
+    width: 550px;
+    padding: 45px;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    color: white;
+    background-image: linear-gradient(to bottom,#1b346d,#1f3870,#12306d);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    }
+.text-center{
+     text-align: center;
+    }
+.form-control
+    {
+    margin: 8px 0;
+    }
+
+#emailHelp{
+    color: #A9A9A9;
+}
