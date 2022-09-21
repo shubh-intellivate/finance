@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordsComponent } from './records/records.component';
 import { DataTablesModule } from 'angular-datatables';
 import { SgaComponent } from './sga/sga.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { SgaComponent } from './sga/sga.component';
     CetComponent,
     RecordsComponent,
     SgaComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
