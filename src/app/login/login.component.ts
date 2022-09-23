@@ -16,28 +16,24 @@ export class LoginComponent implements OnInit {
   constructor(private http:HttpClient, private dataService : DataService, private routes: Router) { }
 
   loginData: any;
+  hideError: any = true;
 
   ngOnInit() {
   }
   
-
-  //onSubmit() {
-   // this.http.post('https://dev100427.service-now.com/api/now/table/u_inbound_demo3_integration', data)
-   // .subscribe((result)=>{
-   //   console.warn("result",result);
-  //  })
-   // console.warn(data);
-
   onSubmit(){
     this.dataService.login(this.formData.email, this.formData.password).subscribe(
       res => {
-        console.warn(res);
-        //if(res.result.status == "true"){
-        //  localStorage.setItem('username', res.result.User_Name)
-        //  this.routes.navigate(['/dashboard']);
-       // }else{
-        //  this.routes.navigate(['/login']);
-       // }
+        console.log(res);
+        if(res.result.status == "True"){
+          this.hideError = true;
+         localStorage.setItem('isLoggedIn', "true")
+         localStorage.setItem('groups', res.result.result.groups)
+         this.routes.navigate(['/dashboard']);
+       }else{
+          this.hideError = false;
+          this.routes.navigate(['/login']);
+       }
       }
     )}
   }

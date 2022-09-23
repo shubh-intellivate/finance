@@ -7,11 +7,13 @@ import { SgaComponent } from './sga/sga.component';
 import {LoginComponent} from './login/login.component'
 import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {path:'login', component: LoginComponent},
+  {path:'logout', component: LogoutComponent},
   { path: 'dashboard', canActivate:[AuthGuard],  component: DashboardComponent },
   { path: 'sga', canActivate:[AuthGuard], component: SgaComponent },
   { path: 'records', canActivate:[AuthGuard], component: RecordsComponent },

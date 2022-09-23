@@ -15,7 +15,8 @@ export class DataService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': '*',
       'Access-Control-Allow-Credentials': 'true',
-      'Authorization': 'Basic ' + btoa('shubhendru:Shubhendru@123')
+      // 'Authorization': 'Basic ' + btoa('shubhendru:Shubhendru@123')
+      'Authorization': 'Basic ' + btoa('shubhendru:Shubh@123')
     })
   }
 
@@ -29,21 +30,18 @@ export class DataService {
 
 
   public login(username: any, password: any): Observable<any> {
-    const params = new URLSearchParams();
-    params.set('email', username);
-    
 
-    return this.http.post("https://morpheusdev.service-now.com/api/x_intp_cet_and_fin/usergroupvalidation/Grpupcheck?email="+username, params, this.httpOptions)
-    // return of({
-    //   "result": {
-    //       "status": "true",
-    //       "message": "Email Not Found",
-    //       "details":{
-    //        "name": "Shubhendru Raj",
-    //        "email": "abc@example.com",
-    //        "password": 12345
-    //      }
-    //   }
+    var postData = {
+      "user_name": username,
+      "password": password
+    }
+
+    return this.http.post("https://morpheusdev.service-now.com/api/intp/usergroupvalidationglobal/usergroup", postData, this.httpOptions)
+  //   return of({
+  //     "result": {
+  //         "status": "true",
+  //         "groups": 'SGA - CTO ,SGA - Admin ,'
+  //     }
   // })
   }
 

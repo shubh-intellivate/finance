@@ -34,6 +34,9 @@
       left: 0;
       margin-right: unset;
     }
+    .hideCategory{
+      display: none !important;
+    }
   </style>
   
   <div class="az-content az-content-dashboard">
@@ -119,6 +122,7 @@
   
           <nav class="nav">
             <a class="nav-link" routerLink="/dashboard" style="display: block !important;"><i class="far fa-dashboard"></i>Finance Dashboard</a>
+            <a class="nav-link" routerLink="/logout" style="display: block !important;"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
             <!-- <a class="nav-link" routerLink="/"><i class="far fa-save"></i> Save Report</a>
             <a class="nav-link" routerLink="/"><i class="far fa-file-pdf"></i> Export to PDF</a>
             <a class="nav-link" routerLink="/"><i class="far fa-envelope"></i>Send to Email</a>
@@ -127,25 +131,34 @@
         </div>
         <div class="w3-bar">
             <button class="w3-bar-item w3-button tablink w3-grey" (click)="showTab($event, 'summary', 'Summary')">Summary</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'admin', 'Admin')">Admin</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'branch', 'Branch')">Branch</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'StrategyAndPlanning', 'Strategy and Planning')">Strategy and Planning</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Corporate', 'Corporate')">Corporate</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Finance', 'Finance')">Finance</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'HR', 'HR')">HR</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'IT', 'IT')">IT</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SecretarialAndLegal', 'Secretarial & Legal')">Secretarial & Legal</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Management', 'Management')">Management</button>
+            <!-- <button class="w3-bar-item w3-button tablink" *ngFor="let group of user_groups" (click)="showTab($event, group, group)">{{group}}</button> -->
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Admin', 'Admin')" [ngClass]="user_groups.indexOf('Admin') > -1 ? '': 'hideCategory'">Admin</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Branch', 'Branch')" [ngClass]="user_groups.indexOf('Branch') > -1 ? '': 'hideCategory'">Branch</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Strategy and Planning', 'Strategy and Planning')" [ngClass]="user_groups.indexOf('Strategy and Planning') > -1 ? '': 'hideCategory'">Strategy and Planning</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Corporate', 'Corporate')" [ngClass]="user_groups.indexOf('Corporate') > -1 ? '': 'hideCategory'">Corporate</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Finance', 'Finance')" [ngClass]="user_groups.indexOf('Finance') > -1 ? '': 'hideCategory'">Finance</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'HR', 'HR')" [ngClass]="user_groups.indexOf('HR') > -1 ? '': 'hideCategory'">HR</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'IT', 'IT')" [ngClass]="user_groups.indexOf('IT') > -1 ? '': 'hideCategory'">IT</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Secretarial & Legal', 'Secretarial & Legal')" [ngClass]="user_groups.indexOf('Secretarial & Legal') > -1 ? '': 'hideCategory'">Secretarial & Legal</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Management', 'Management')" [ngClass]="user_groups.indexOf('Management') > -1 ? '': 'hideCategory'">Management</button>
+
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Marketing', 'Marketing')" [ngClass]="user_groups.indexOf('Marketing') > -1 ? '': 'hideCategory'">Marketing</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Quality', 'Quality')" [ngClass]="user_groups.indexOf('Quality') > -1 ? '': 'hideCategory'">Quality</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Supply Chain', 'Supply Chain')" [ngClass]="user_groups.indexOf('Supply Chain') > -1 ? '': 'hideCategory'">Supply Chain</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SIG', 'SIG')" [ngClass]="user_groups.indexOf('SIG') > -1 ? '': 'hideCategory'">SIG</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'NBI', 'NBI')" [ngClass]="user_groups.indexOf('NBI') > -1 ? '': 'hideCategory'">NBI</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'CTO', 'CTO')" [ngClass]="user_groups.indexOf('CTO') > -1 ? '': 'hideCategory'">CTO</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'COO', 'COO')" [ngClass]="user_groups.indexOf('COO') > -1 ? '': 'hideCategory'">COO</button>
         </div>
-        <div class="w3-bar">
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Marketing', 'Marketing')">Marketing</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Quality', 'Quality')">Quality</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SupplyChain', 'Supply Chain')">Supply Chain</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SIG', 'SIG')">SIG</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'NBI', 'NBI')">NBI</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'CTO', 'CTO')">CTO</button>
-            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'COO', 'COO')">COO</button>
-        </div>
+        <!-- <div class="w3-bar">
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Marketing', 'Marketing')" [ngClass]="user_groups.indexOf('Marketing') > -1 ? '': 'hideCategory'">Marketing</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'Quality', 'Quality')" [ngClass]="user_groups.indexOf('Quality') > -1 ? '': 'hideCategory'">Quality</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SupplyChain', 'Supply Chain')" [ngClass]="user_groups.indexOf('Supply Chain') > -1 ? '': 'hideCategory'">Supply Chain</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'SIG', 'SIG')" [ngClass]="user_groups.indexOf('SIG') > -1 ? '': 'hideCategory'">SIG</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'NBI', 'NBI')" [ngClass]="user_groups.indexOf('NBI') > -1 ? '': 'hideCategory'">NBI</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'CTO', 'CTO')" [ngClass]="user_groups.indexOf('CTO') > -1 ? '': 'hideCategory'">CTO</button>
+            <button class="w3-bar-item w3-button tablink" (click)="showTab($event, 'COO', 'COO')" [ngClass]="user_groups.indexOf('COO') > -1 ? '': 'hideCategory'">COO</button>
+        </div> -->
         <div id="summary" class="tabs">
             <div class="row row-sm mg-b-20">
                 <div class="col-lg-12 mg-t-20 mg-lg-t-0">
@@ -216,7 +229,7 @@
                 </div>
             </div>
         </div>
-        <div id="admin" class="tabs" style="display:none">
+        <div id="Admin" class="tabs" style="display:none">
             <div class="row row-sm mg-b-20">
                 <div class="col-lg-12 mg-t-20 mg-lg-t-0">
                 <div class="card card-dashboard-five" style="overflow-x: scroll;">
@@ -296,7 +309,7 @@
                 </div>
             </div>
         </div>
-        <div id="branch" class="tabs" style="display:none">
+        <div id="Branch" class="tabs" style="display:none">
             <div class="row row-sm mg-b-20">
                 <div class="col-lg-12 mg-t-20 mg-lg-t-0">
                 <div class="card card-dashboard-five" style="overflow-x: scroll;">
@@ -376,7 +389,7 @@
                 </div>
             </div>
         </div>
-        <div id="StrategyAndPlanning" class="tabs" style="display:none">
+        <div id="Strategy And Planning" class="tabs" style="display:none">
             <div class="row row-sm mg-b-20">
                 <div class="col-lg-12 mg-t-20 mg-lg-t-0">
                 <div class="card card-dashboard-five" style="overflow-x: scroll;">
@@ -776,7 +789,7 @@
                 </div>
             </div>
         </div>
-        <div id="SecretarialAndLegal" class="tabs" style="display:none">
+        <div id="Secretarial & Legal" class="tabs" style="display:none">
             <div class="row row-sm mg-b-20">
                 <div class="col-lg-12 mg-t-20 mg-lg-t-0">
                 <div class="card card-dashboard-five" style="overflow-x: scroll;">
@@ -1096,7 +1109,7 @@
                 </div>
             </div>
         </div>
-        <div id="SupplyChain" class="tabs" style="display:none">
+        <div id="Supply Chain" class="tabs" style="display:none">
             <div class="row row-sm mg-b-20">
                 <div class="col-lg-12 mg-t-20 mg-lg-t-0">
                 <div class="card card-dashboard-five" style="overflow-x: scroll;">

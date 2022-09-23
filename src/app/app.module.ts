@@ -19,6 +19,7 @@ import { RecordsComponent } from './records/records.component';
 import { DataTablesModule } from 'angular-datatables';
 import { SgaComponent } from './sga/sga.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { LoginComponent } from './login/login.component';
     RecordsComponent,
     SgaComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

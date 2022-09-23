@@ -78,6 +78,7 @@ export class SgaComponent implements OnInit {
   CTO_total_own_sga: any[];
   COO_total_own_sga: any[];
   summary_corporate_total: any[];
+  user_groups: Array<String> = [];
 
   constructor(
     private dataService : DataService
@@ -85,6 +86,14 @@ export class SgaComponent implements OnInit {
   
 
   ngOnInit() {
+    var groups = localStorage.getItem('groups');
+    var groupArr = groups.split(' , ');
+    groupArr.forEach(element => {
+      var temp = element.split(' - ');
+      if(temp.length > 1){
+        this.user_groups.push(temp[1])
+      }
+    });
     this.getSgaSummary('H');
     this.getAdminData('H');
     this.getBranchData('H');
